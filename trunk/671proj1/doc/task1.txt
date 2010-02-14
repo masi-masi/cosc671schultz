@@ -1,0 +1,19 @@
+Tara Schultz
+COSC 671.101
+
+Project 1
+Task 1
+
+I elected to install Eclipse IDE for Java Developers.  Installation was
+pretty fast and easy.  Installing the Subclipse and JAutodoc plugins was
+also easy, and I don't install a lot of these.  I'm usually restricted to
+whatever has been pre-installed on my machine at work and any new plugins 
+or packages need to be brought in by one of our Systems Administrators. 
+For the Hello World program, I just wrote my own few lines of code and 
+ran it as a Java Application through Eclipse.  
+
+I like the JAutoDoc plugin. The right click "Add Javadoc" makes it so easy. 
+It's also good for adding comments to methods that are frequently used 
+like getters and setters. To kind of fill in the blanks making sure that 
+all methods are documented equally so you have a nice complete API for 
+other developers and the customer.    

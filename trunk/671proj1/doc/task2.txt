@@ -1,0 +1,18 @@
+Tara Schultz
+COSC 671.101
+
+Project 1
+Task 2
+
+While I do use Subclipse at work, I had never used it to check out a 
+repository before.  I had always checked everything out using the command 
+line and then built a new Java Project in Eclipse from that folder.  I have 
+used some of the other Subclipse functions like Compare With, Revert, 
+Commit, Update on a regular basis at work.  So I was pretty familiar with 
+them.  I use Compare With a lot when working very closely with my 
+coworkers particularly when we're editing the same classes or methods.  
+The SVN Repository Exploring perspective was completely new to me.  
+I used to get frustrated browsing the package structure from the command 
+line when looking for the latest branch or tag.  I was used to seeing it 
+in a tree in Eclipse.  Now that I know that feature is there, I will 
+definitely use it.  
