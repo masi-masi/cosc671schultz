@@ -1,0 +1,22 @@
+Tara Schultz
+COSC 671.101
+
+Project 1
+Task 4
+
+It took me a little time to figure out C.  I haven't worked with C code in a while.  
+It was a bit difficult to figure out what the variables in the C code were used for.  
+The lack of documentation and poor formatting of the code made it harder to read.  
+I renamed some of the methods as well.  It helps to use obvious or descriptive names.  
+Especially in code with little comments.  
+
+I added an additional character for '\r' to the array of characters for deletion.  
+I was stuck on that for a while.  I forgot about '\r'.  Using JAutodoc made 
+commenting a little easier.  Documentation takes a little longer, but overall 
+it's worth it.  It makes your code more readable so others that
+read your code long after you're gone understand what your code is doing.  
+
+Maintenance is such an important part of software development.  You would think 
+that taking the time to document changes to the project would be of the utmost 
+priority but sadly that isn't always the case.  A tight schedule and customers 
+demanding more new features often gets in the way.  

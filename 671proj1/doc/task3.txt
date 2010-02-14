@@ -1,0 +1,14 @@
+Tara Schultz
+COSC 671.101
+
+Project 1
+Task 3
+
+I learned how to start a new project on Google Code.  I had heard about Google 
+Code Jam from a coworker, but didn't know that they offered free hosting.  I 
+learned how to create a new project, give other members priviledges to my project.  
+Additionally I used the SVN Repository Exploring perspective to add the check in/
+check out site to my list of repositories.  Google Code is perfect for class 
+projects.  It's a great idea.  The last class I took we used Subversion for 
+our group project.  We didn't use Google Code to host it but CVSDude which is 
+now codesion.com.  
