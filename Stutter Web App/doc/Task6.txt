@@ -1,0 +1,42 @@
+Tara Schultz
+COSC 671.101
+
+Project 2
+Task 6
+
+Partner's Name: N/A
+Web App URL: http://tschul2stutter.appspot.com/
+Google Code Repository: https://cosc671schultz.googlecode.com/svn/trunk/Stutter Web App
+
+A description (2-3 paragraphs) of what you learned from this project and how it relates to some of
+the topics covered in lecture:
+
+I though this was an interesting project.  Since I didn't work with a partner I learned a 
+little about maintenance.  I had never used the Google Web Toolkit before, so I had to learn
+a little bit about its components and how to migrate my code from Project 1 to it.  It was 
+pretty easy to use mostly because everything was well documented.  It was also a good exercise 
+in changing the input and output and of a component without changing its overall functionality.
+
+Had I worked with a partner it would have been a good exercise in working with Subversion.
+
+A brief description (1-2 paragraphs) of what was the hardest part about this project: 
+The hardest part was rooting through the .html file.  HTML is all tags and can take 
+some time to root through.  Looking at Java in Eclipse is a lot easier than HTML.  
+I also had to take some time to read the GWT API and other documentation which 
+slowed me down a little bit.
+
+A brief description (1-2 paragraphs) how you changed your original code to accommodate it into
+a web application:
+Switched from reading from a FileReader to a StringReader.
+Modified the title and other labels in the .html file.
+Moved methods from my Project 1 code to GreetingServiceImpl.java.
+Modified the stutter functions to store the output to a StringBuffer for return.
+Modified Stutter_Web_App.java to not submit when hitting "enter" key.
+
+
+A brief description (1-2 paragraphs) on what you did to test your web application to ensure that it
+meets the requirements:
+I basically tested my application against 
+
+A brief description on ways that the user interface of your Stutter web application could be
+changed to improved:
