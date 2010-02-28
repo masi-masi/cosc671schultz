@@ -17,9 +17,10 @@ a little bit about its components and how to migrate my code from Project 1 to i
 pretty easy to use mostly because everything was well documented.  It was also a good exercise 
 in changing the input and output and of a component without changing its overall functionality.
 
-Had I worked with a partner it would have been a good exercise in working with Subversion.
+Had I worked with a partner it would have been a good exercise in merging using Subversion.  
 
 A brief description (1-2 paragraphs) of what was the hardest part about this project: 
+
 The hardest part was rooting through the .html file.  HTML is all tags and can take 
 some time to root through.  Looking at Java in Eclipse is a lot easier than HTML.  
 I also had to take some time to read the GWT API and other documentation which 
@@ -27,17 +28,26 @@ slowed me down a little bit.
 
 A brief description (1-2 paragraphs) how you changed your original code to accommodate it into
 a web application:
-Switched from reading from a FileReader to a StringReader.
-Modified the title and other labels in the .html file.
-Moved methods from my Project 1 code to GreetingServiceImpl.java.
-Modified the stutter method to store the output to a StringBuffer for return.
-Modified Stutter_Web_App.java to not submit when hitting "enter" key.
+
+Switched from reading from a FileReader to a StringReader. Modified the title and other 
+labels in the .html file. Moved methods from my Project 1 code to GreetingServiceImpl.java.
+Modified the stutter method to store the output to a StringBuffer for return. Modified 
+Stutter_Web_App.java to not submit when hitting "enter" key. Switch from TextField to 
+TextArea which also required me to specify the desired width and height of the component.
 
 A brief description (1-2 paragraphs) on what you did to test your web application to ensure that it
 meets the requirements:
+
 I basically tested my application against the one deployed to http://jdehlinger.appspot.com.  I used 
 no text as input, text with duplicate words, and text without duplicate words and made sure that 
-the results in the jdehlinger version were the same as the tschul2stutter one.  
+the results and display in the jdehlinger version were the same as the tschul2stutter one.  
 
 A brief description on ways that the user interface of your Stutter web application could be
 changed to improved:
+
+Instead of just entering text through a TextArea also allow the user to upload a file. That way 
+the program is still performing the same operation, just adding an additional way to give it
+text.  Users who may have used the Stutter program before it was turned to a web application, 
+were accustomed to specifying a file name.  To use the Web App they would have to open the 
+file and copy and paste the text into the TextArea to stutter.  Letting the user choose a 
+file or enter text keeps the legacy code users happy.
