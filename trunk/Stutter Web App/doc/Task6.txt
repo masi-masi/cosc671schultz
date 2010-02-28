@@ -30,13 +30,14 @@ a web application:
 Switched from reading from a FileReader to a StringReader.
 Modified the title and other labels in the .html file.
 Moved methods from my Project 1 code to GreetingServiceImpl.java.
-Modified the stutter functions to store the output to a StringBuffer for return.
+Modified the stutter method to store the output to a StringBuffer for return.
 Modified Stutter_Web_App.java to not submit when hitting "enter" key.
-
 
 A brief description (1-2 paragraphs) on what you did to test your web application to ensure that it
 meets the requirements:
-I basically tested my application against 
+I basically tested my application against the one deployed to http://jdehlinger.appspot.com.  I used 
+no text as input, text with duplicate words, and text without duplicate words and made sure that 
+the results in the jdehlinger version were the same as the tschul2stutter one.  
 
 A brief description on ways that the user interface of your Stutter web application could be
 changed to improved:
