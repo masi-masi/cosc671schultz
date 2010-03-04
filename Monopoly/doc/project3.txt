@@ -1,0 +1,36 @@
+Tara Schultz
+COSC 671.101
+
+Project 3
+
+Task 4: Briefly describe how this failure is handled by JUnit.
+
+To notify the developer of the failed test, the JUnit window changes in various places.
+A red box with an x appears in the JUnit tab.  The number of failures is incremented
+appropriately.  The bar next to the failure count is red indicating there was some 
+error or failure related to the test.  The window on the left listing all of the JUnit 
+test files that were run, highlights the failed test class (edu.ncsu.monopoly.CardsTest)
+and the test method within the class that failed (testCardType).  To the right, the 
+Failure Trace window indicates the type of JUnit failure, in this case it is an 
+AssertionFailedError and the location of the line of code in the test that caused the 
+failure, CardsTest.testCardType(CardsTest.java:25).
+
+Task 5: Briefly describe if this omission is an oversight on the part of Eclipse's 
+refactoring operation and why or why not.  Additionally, briefly describe how (or if) 
+this operation is any different than a simple find all and replace.
+
+This omission is not an oversight.  The rename refactoring operation performed applies to 
+the protected variable "theOwner" of type Player for the Cell class.  The setTheOwner method 
+takes a parameter of type Player.  In this case, the parameterized variable is named "owner".  
+This "owner" parameter's scope only applies to the contents of the setTheOwner method, 
+therefore its name is really irrelevant.  It could be named "apple" (which isn't advised 
+because it would make the code a little confusing) and the setTheOwner method
+would still perform the same, setting the instance of the class variable "theOwner" to that 
+of the parameter whether it's named "owner" or "apple" or "theOwner."
+
+It's pretty clear from this example that the rename operation is not just a simple find all 
+and replace.  If it were, it surely would have renamed the parameter as well.  Also if it 
+were a simple find/replace in the Cell class, it wouldn't have updated the method calls in 
+other classes.
+
+Task 6: 
