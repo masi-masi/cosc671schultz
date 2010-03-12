@@ -33,4 +33,89 @@ and replace.  If it were, it surely would have renamed the parameter as well.  A
 were a simple find/replace in the Cell class, it wouldn't have updated the method calls in 
 other classes.
 
-Task 6: 
+Task 6: Briefly describe your experience with this task and for which design smells pushing 
+down or pulling up a class's field(s) and/or associated methods could help make the code 
+more maintainable and why.
+
+This is a pretty neat feature, and I will probably use this in the future now that I know
+what it does.  Pushing down and pulling up could be useful for resolving divergent changes.  
+For example, if you have a class with many subclasses like Cell has many subclasses, 
+pushing down could be used to movie fields in Cell to a more applicable subclass.  
+This ensures that all methods related to the field that is being moved are moved as well.  
+It makes sure that changing the location of a field within the code also means you're 
+changing the related methods and method calls as necessary to retain existing functionality.  
+
+Task 7: Briefly describe your experience with this task and for which design smells 
+extracting an interface could make the code more maintainable and why.  In your 
+description, be sure to include a description of which methods you extracted into the
+interface and what new files were created in this operation.  
+
+Again a cool feature I didn't know was there.  This was a really quick and easy way to 
+create and implement interfaces.  I elected to move the methods getTheOwner and setTheOwner.  
+The results of this change were a new class IOwnable was created.  Cell now implements 
+IOwnable.  GetTheOwner and setTheOwner are abstract methods in IOwnable and the specifics
+of the implementation is still in Cell.  This could be used so fix Primitive Obsession.  
+In a way this forces constraints.  You're abstracting out something about this Cell.  Cell 
+has an owner and so, cell must have a way to get and set the owner.  By implementing IOwnable
+we are saying these are things that must be defined for each class.   
+
+Task 8: Briefly describe your experience with this task including the method signature you
+extracted and why you chose this one. 
+
+I selected the string declaration and the for loop.  The string monopolies was not used 
+anywhere else in the getRent method so it made sense to only pass the int rentToCharge.  
+Passing the string too would be unnecessary. Again a really cool refactor feature in Eclipse.
+
+Task 9: Briefly describe your experience with this task and for which design smells creating
+a local variable from repeated code could help make the code more maintainable and why.  In 
+addition, comment on whether it is always OK to do this to a function call and whether it 
+could affect the correctness of a program 
+
+This is again a really quick way to fix common problems, and this refactor feature is much 
+faster than manually typing everything.  This could be used to resolve Inappropriate 
+Intimacy because you're making sure you're not continuously calling the same methods just 
+to get the value of some variable.  In general this is an OK change to make.  As long as the 
+of the variable isn't going to change (and you need the updated value) between the first and 
+second time it's called.  
+
+Task 10: Briefly describe your experience with this task and for which design smells changing
+a method's signature could make the code more maintainable and why.  In addition, comment on
+why things are changing in other class than just Cell.java and how this affected the 
+definitions of any other classes besides Cell.java
+
+Changes occurred in more than just Cell because the specifics of the implementation of 
+playAction are in the subclasses.  Additionally the each playAction method in every subclass
+of Cell was altered to pass the msg parameter.
+
+Task 11
+
+A description of what you learned from this project and how it relates to some of the topics
+covered in lecture
+
+This was a really good exercise in how to quickly perform refactoring procedures that 
+are commonly used to resolve "bad smells."  Mostly I learned that these operations 
+existed and that "refactor" wasn't just for renaming and moving classes.  This could 
+save a lot of time in fixing code.  It makes improving the code, what we want, faster so, 
+the development team can afford to spend time on enhancements like the users want.  
+
+A description of what you liked about Eclipse's support for refactoring including its 
+strength and limitations
+
+I really like Eclipse's refactoring.  Up until this project I had only really used it to 
+move or rename classes.  These additional functions of moving parameters, methods, classes 
+are all very useful and I'm positive that I'll use them in the future, now that I know they
+exist and how to use them.  
+
+While there are some limitations, and places where the developer still needs to specify 
+parameters, methods, fields to be affected, I think these are necessary interventions.  
+The code can't write itself, if it could we would be out of a job.  It's important that 
+even though these features or shortcuts exist we have say in what is affected and how
+the code changes.
+
+A description of how/why unit test are important when doing refactoring
+
+Unit tests are essential to refactoring.  They are what ensures that your are not losing 
+functionality when you refactor code.  Refactoring is changing the internal structure of 
+the code without affecting existing functionality.  If you can't ensure that your 
+program still works as expected how do you know that your refactoring isn't having 
+negative effects.  
