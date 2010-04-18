@@ -1,0 +1,217 @@
+Tara Schultz
+COSC 671.101
+Exam 2 #1
+
+Chapter 1 (based on Section 1.1 #2 and Section 1.3 #3 exercise)
+
+a) Write a small Java program that contains a method with the signature
+        public static Vector union (Vector a, Vector b)
+   and that returns a Vector of objects that are in either of the two 
+   provided Vector arguments.  Your program should be documented using
+   Javadoc and follow good Java programming style.  Provide your union
+   method (including Javadoc comments).  
+   
+   See /src/default package/InitialUnion.java
+   
+b) After initially writing your union method according to the provided 
+   requirements, you may discover possible defects and/or ambiguities 
+   in the requirements.  Describe at least 4 possible faults.
+   
+   I found two possible flaws with the program.  The first involves 
+   handling the contents of each vector and how the union is performed.
+   The other is related to the implementation of the program itself, 
+   and resulted in other considerations to be made. 
+     
+   1.  Ensure that duplicate values in each vector does not result
+       in duplicate values in the union vector.
+   2.  Ensure that an empty first vector does not result in an error.
+   3.  Ensure that an empty second vector does not result in an error.
+   4.  Since arguments are being passed we need to make sure that the
+       values are actual integer values and not some other unexpected
+       data type. (Resulted from 2)
+       
+c) Create a set of tests that you think would have a reasonable chance 
+   of revealing each of the 4 faults you identified in (b).  Describe 
+   your rationale for each test in your test set.  Finally, instrument
+   your code (in the main method) to execute your test set and describe 
+   the results for each.
+   
+   1.  Vector a and b should have some duplicate values.  
+          Input arguments: 0 0 0 1 2 3 4 5 / 7 8 9 10
+       Expected result 
+          Vector A = [0, 0, 0, 1, 2, 3, 4, 5]
+          Vector B = [7, 8, 9, 10]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]
+       Actual result: Test Passed
+          Vector A = [0, 0, 0, 1, 2, 3, 4, 5]
+          Vector B = [7, 8, 9, 10]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]
+        
+   2.  Handling empty first vector
+          Input arguments: / 1 2 3 4
+       Expected result
+          Vector A = []
+          Vector B = [1, 2, 3, 4]
+          Union of A and B = [1, 2, 3, 4]
+       Actual results: Test Passed
+          Vector A = []
+          Vector B = [1, 2, 3, 4]       
+          Union of A and B = [1, 2, 3, 4]
+        
+   3.  a) Handling empty second vector
+          Input arguments: 1 2 3 4 /
+       Expected result
+          Vector A = [1 2 3 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+       Actual Result: Test Passed
+          Vector A = [1 2 3 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+
+       b) Handling empty second vector w/o '/'
+          Input arguments: 1 2 3 4
+       Expected result
+          Vector A = [1, 2, 3, 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+       Actual Result: Test Passed
+          Vector A = [1, 2, 3, 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+        
+   4.  Handling vectors with mixed data types.
+          Input arguments: 0 1 2 3 / 4 5 6 cow
+       Expected result should be
+          Throw error on 'cow'.
+          Vector A = [0, 1, 2, 3]
+          Vector B = [4, 5, 6]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 6]
+       Actual Result: Test Failed 
+          Contents of union vector are as expected, but no error
+          is made visible to the user to alert them of unexpected
+          input.
+          Vector A = [0, 1, 2, 3]
+          Vector B = [4, 5, 6]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 6]
+          
+d) Rewrite your union method to fix the defects/ambiguities you 
+   identified in (b).  Provide your updated union method here and rerun
+   the code with the instrumented test set from (c) and describe the 
+   new results for each.
+   
+   See /src/default package/Union.java
+   
+   1.  Vector a and b should have some duplicate values.  
+          Input arguments: 0 0 0 1 2 3 4 5 / 7 8 9 10
+       Expected result 
+          Vector A = [0, 0, 0, 1, 2, 3, 4, 5]
+          Vector B = [7, 8, 9, 10]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]
+       Actual result: Test Passed
+          Vector A = [0, 0, 0, 1, 2, 3, 4, 5]
+          Vector B = [7, 8, 9, 10]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]
+        
+   2.  Handling empty first vector
+          Input arguments: / 1 2 3 4
+       Expected result
+          Vector A = []
+          Vector B = [1, 2, 3, 4]
+          Union of A and B = [1, 2, 3, 4]
+       Actual results: Test Passed
+          Vector A = []
+          Vector B = [1, 2, 3, 4]       
+          Union of A and B = [1, 2, 3, 4]
+        
+   3.  a) Handling empty second vector
+          Input arguments: 1 2 3 4 /
+       Expected result
+          Vector A = [1 2 3 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+       Actual Result: Test Passed
+          Vector A = [1 2 3 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+
+       b) Handling empty second vector w/o '/'
+          Input arguments: 1 2 3 4
+       Expected result
+          Vector A = [1, 2, 3, 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+       Actual Result: Test Passed
+          Vector A = [1, 2, 3, 4]
+          Vector B = []
+          Union of A and B = [1, 2, 3, 4]
+        
+   4.  Handling vectors with mixed data types.
+          Input arguments: 0 1 2 3 / 4 5 6 cow
+       Expected result should be
+          WARNING Invalid Input: "cow" is not an integer, and will not be added to either Vector.
+          Vector A = [0, 1, 2, 3]
+          Vector B = [4, 5, 6]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 6]
+       Actual Result: Test Passed
+          WARNING Invalid Input: "cow" is not an integer, and will not be added to either Vector.
+          
+          Vector A = [0, 1, 2, 3]
+          Vector B = [4, 5, 6]
+          Union of A and B = [0, 1, 2, 3, 4, 5, 6]
+
+e) Complete Section 1.2 #3 for the findLast method.  To do this, rewrite
+   the method in an executable Java program.
+    
+   3a) Identify the fault:  The for method only executes when i>0, not when i= 0.  Therefore when 
+       i=0, and x[i]=2, y=2 the program returns -1 instead of 0.
+       
+   3b) If possible identify a test case that does not execute the faullt.
+       [1, 2, 5] Expected 1
+       
+   3c) If possible, identify a test case that executes the fault, but does not result in an error
+       state.
+       [0,1,3] Expected -1
+   
+   3d) If possible identify a test case that results in an error, but not a failure.  Hint: Don't
+       forget about the program counter.
+       [0, 1, 3] Expected result -1
+       
+   3e) For the given test case, identify the first error state.  Be sure to describe the complete state.  
+       (x=[2, 3, 5], y=2, i=0, PC=if)
+       
+   3f) Fix the fault and verify that the given test now produces the expected output.
+   
+       (src/default package/FindLast.java)
+       
+        public class FindLast {
+
+            public static void main (String[] args){
+        
+                int[] x = {2, 3, 5};
+                int y = 2;
+        
+                int returned = findLast(x, y);
+                System.out.println("returned: " + returned);
+            }
+    
+            public static int findLast (int[] x, int y) {
+                /* Initial code with fault */
+                //for(int i = x.length-1; i > 0; i--) {
+        
+                /* Modified code for #2 3f */
+                for(int i = x.length-1; i >= 0; i--) {
+            
+                    if( x[i] == y ) {
+                        return i;
+                    }
+                }
+        
+                return -1;
+            }
+        }
+        
+        When program executed it returns the following in the console:
+        "returned: 0"
+
+   

@@ -1,0 +1,83 @@
+Tara Schultz
+COSC 671.101
+Exam 2 #3
+
+Chapter 3 (based on Section 3.3 TriTyp example).
+
+Consider the Stutter.java solution posted to Blackboard.  This method takes 
+an input stream, named input, as an argument.  We can consider this 
+argument simply as an array of String objects that is then split into an 
+array of String words.  With that in mind, consider the following:
+
+  a) Construct a reachability table for the checkStutter predicates 
+     (see Table 3.2, page 124 for an example).
+     
+     10: (line != null)
+     18: (words[0].equalsIgnoreCase(lastWord))
+     22: (i < (words.length-1))
+     25: (words[i].equalsIgnoreCase(words[i+1])
+     
+     10: true
+     18: P1 = (line != null)
+     22: P1
+     25: P1 && P2 = (i < (words.length -1))
+     
+  b) Construct a predicate coverage table for the checkStutter predicates
+     (see Table 3.3, page 124 for an example).
+     
+                                                           TRUE                               FALSE
+                                                   input            EO                 input         EO
+     10: (line != null)                            pork             (no stut found)    (null)        F
+     18: (words[0].equalsIgnoreCase(lastWord)      i like pork      stut: pork         i like        (no stut found)
+                                                   pork                                pork
+     22: (i < (words.length-1))                    i like pork      (no stut found)    pork          (no stut found)
+     25: (words[i].equalsIgnoreCase(words[i+1])    i like like pork stut: like         i like pork   (no stut found)
+     
+  c) If you were to construct a clause coverage talbe for the checkStutter 
+     predicates, would it be different from (b)?  Why or why not?
+     
+     No because these predicates aren't evaluating static values.  They're comparing two values
+     against each other.  So a number of words may fit the necessary criteria for T and F for 
+     each clause.  For example, 10 looks at line with respect to whether or not it is a null value.
+     line could be one word, one character, one line, 10 lines, just as long as it's not null.
+     
+  d) Instrument the given checkStutter method to record which edges are
+     traversed (i.e., add print statements between nodes indicating the
+     current location) and instrument the given code (i.e., in the main
+     method or another test method) with the test cases from (c) to test
+     your code and view the output.  Provide the commented code and 
+     output results.
+     
+     See src/default package/Stutter3d.java for edge coverage print statements
+     
+     Test Case input: "pork"
+     Expected: (no stutters found)
+     Actual: (no stutters found)
+     
+     Test Case input: null
+     Expected: (no stutters found)
+     Actual: (no stutters found)
+     
+     Test Case input: "i like pork \n pork"
+     Expected: Stutter found: pork
+     Actual: Stuttered word on line 2: pork
+     
+     Test Case input: "i like \n pork"
+     Expected: (no stutters found)
+     Actual: (no stutters found)
+     
+     Test Case input: "i like pork"
+     Expected: (no stutters found)
+     Actual: (no stutters found)
+     
+     Test Case input: "pork"
+     Expected: (no stutters found)
+     Actual: (no stutters found)
+     
+     Test Case input: "i like like pork"
+     Expected: Stutter found: like
+     Actual: Stuttered word on line 1: like
+     
+     Test Case input: i like pork
+     Expected: (no stutters found)
+     Actual: (no stutters found)

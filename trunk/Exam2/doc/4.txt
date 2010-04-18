@@ -1,0 +1,202 @@
+Tara Schultz
+COSC 671.101
+Exam 2 #4
+
+Chapter 4 (based on Section 4.2 #5 exercise)
+4.  Consider the Bounded Queue.java program and answer the following:
+
+a)  Identify all of the variables that would be of interest to input space partitioning 
+      (don't forget state variables)
+
+     Variables:
+     - cap
+     - o
+     - capacity
+     - size
+
+b)  Identify characteristics for each variable from (a) that may suggest partitions
+     
+     cap Characteristics:
+     - cap  < 0 (block1 = true, block2 = false)
+     - cap > 0 (block1 = false, block2 = true)
+
+     o Characteristics:
+     - o == null (block1 = true, block2 = false, block3 = false)
+     - o != null (block1 = false, block2 = false, block3 = true)
+
+      capacity Characteristics:
+      - capacity = size (block1 = false, block2 = true, block3 = false)
+      - capacity != size (block1 = false, block2 = false, block3 = true)
+
+     size Characteristics:
+     - size == 0 (block1 = true, block2 = false)
+     - size != 0   (block1 = false, block2 = true)
+
+c)  Identify the blocks in the partition for each characteristic.  Select one block in 
+     each partition as the "base" block
+     
+     ** denotes base
+     
+     cap blocks:
+     - block1** = throw new IllegalArgumentException ("BoundedQueue constructor");
+     - block2 = capacity = cap; 
+                        elements = new Object [capacity]; 
+                        size = 0; front = 0; back = 0;
+
+     o blocks:
+     - block1** = throw new NullPointerException ("BoundedQueue.enqueue");
+     - block2 = throw new IllegalStateException ("BoundedQueue.enqueue");
+     - block3 = size++;
+                        elements [back] = 0;
+                        back = (back+1) % capacity;
+
+     capacity blocks:
+     - block1** = throw new NullPointerException ("BoundedQueue.enqueue");
+     - block2 = throw new IllegalStateException ("BoundedQueue.enqueue");
+     - block3 = size++;
+                        elements [back] = 0;
+                        back = (back+1) % capacity;
+
+     size blocks:
+     - block1** = throw new IllegalStateException ("BoundedQueue.enqueue"); 
+     - block2 = size--; Object o = elements [(front %capacity}];
+                        elements [front] = null;
+                        front = (front +1) % capacity;
+                        return 0;
+
+d)  Define values for the block
+      
+      cap char                 b1           b2
+      cap (< 0)                -2            -2
+      cap (> 0)                  2             2
+
+      o char                      b1           b2          b3
+      o (= null)                 null         null        null
+      o (!= null)                3             2             3
+  
+     capacity char          b1            b2          b3
+     capacity (= size)     0              0            0
+     capacity (!= size)
+
+     size char                   b1            b2
+     size (==0)                  0              0
+     size (!= 0)                   1             1
+
+
+e)  Define a test set that satisfies base choice coverage.
+      
+      cap test set:
+      cap < 0: cap = -2
+      cap > 0: cap = 2
+
+      o test set:
+      o = null
+      o = Object 1
+
+     capacity test set:
+     capacity = size: capacity = 2, size = 2
+     capacity != size: capacity = 3, size = 2
+
+     size test set:
+     size = 0;
+     size = 2;
+
+f)  Repeat these steps for the Stutter web application we did in Project 2.
+
+a)  Identify all of the variables that would be of interest to input space partitioning 
+      (don't forget state variables)
+
+     Variables:
+     - args
+     - input ?
+     - line
+     - words
+
+b)  Identify characteristics for each variable from (a) that may suggest partitions
+     
+     args Characteristics:
+     - args.length > 1 (block1 = true, block2 = false)
+     - args.length > 0 (block1 = false, block2 = true)
+
+     input Characteristics:
+     - input == null (block1 = true)
+     - input != null (block1 = false)
+
+      line Characteristics:
+      - line != null (block1 = true, block2 = false)
+      - line != null (block1 = false, block2 = true)
+
+     words Characteristics:
+     - words[0].equalsIgnoreCase(lastWord) (block1 = true, block2 = true)
+     - words[0] != lastWord (block1 = false, block2 = true)
+     - words[i].equalsIgnoreCase(words[i+1]) (block3 = true, block4 = true)
+     - words[i] != words[i+1] (block3 = false, block4 = true) 
+
+c)  Identify the blocks in the partition for each characteristic.  Select one block in 
+     each partition as the "base" block
+     
+     ** denotes base
+     
+     args blocks:
+     - block1** = System.out.println("Too many arguments.\nUsage: java stutter <input file>");
+     - block2 = try { 
+                               BufferedReader reader = new BufferedReader (new FileReader (args[0]);
+                               checkStutter (reader);
+                               reader.close();
+                       } catch (Exception e) {
+                               System.err.println("Error reading from file " + arge[0] + ": " + e.getMessage());
+
+     input blocks:
+     - block1** = EVERYTHING IN WHILE LOOP
+
+     line blocks:
+     - block1** = EVERYTHING IN WHILE LOOP
+     - block2 = null
+
+     words blocks:
+     - block1** = System.out.println("Stuttered word on line  + lineNumber + ": " + words[0]);
+     - block2 = EVERYTHING INCLUDING AND AFTER FOR LOOP
+     - block3 = Sytem.out.println("Stuttered word on line " + lineNumber + ": " + words[i]);
+     - block4 = null
+
+d)  Define values for the block
+      
+      args char                 b1                                                b2
+      args (.length > 1)    testFile.txt testFile1.txt            testFile.txt testFile2.txt
+      cap (.length > 0)     textFile.txt                                  testFile.txt
+
+      input char                      b1           
+      input (= null)                 null        
+      input (!= null)                i like pork            
+  
+     line char                  b1                       b2        
+     line (!= null)            i like pork           i like pork         
+     line (= null)             null                      null
+
+     words char                       b1               b2             b3            b4
+     words (= lastWord)         like \n like  
+     words (!= lastWord)        like \n pork
+     words ([i]= [i+1])              i like like pork
+     words ([i]!=[i+1])              i like pork
+
+e)  Define a test set that satisfies base choice coverage.
+      
+      args test set:
+      args > 1: args = testFile.txt testFile2.txt
+      args > 0: args = testFile.txt
+
+      input test set:
+      input = null
+      input != null: input = i like pork
+
+     line test set:
+     line != null: line = i like pork
+     line = null: line = null
+
+     words test set:
+     words[0] = lastWord:  i like pork \n pork
+     words[0] != lastWord:  i like pork \n and beans
+     words[i] = words[i+1]:   i like like pork
+     words[i] != words[i+1]:  i like pork
+
+     
