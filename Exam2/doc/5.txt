@@ -1,0 +1,44 @@
+Tara Schultz
+COSC 671.101
+Exam 2 #5
+
+Chapter 5 (based on Section 5.2 #6 exercises)
+
+Define 10 mutants for the checkStutter method using the effective mutation 
+operators given in Chapter 5.  Try to use each operator at least once.  
+For each mutation, given a brief description.  Approximately how many 
+mutants for the checkStutter method if we generated all from the effective
+mutation operators?
+
+ABS 34: lineNumber = abs(lineNumber + 1)
+           Add absolute value operation
+AOR 34: lineNumber = lineNumber - 1
+           Decrement instead of increment
+ROR 22: i > (words.length - 1)
+           Greater than instead of less than
+    22: i <= (words.length - 1)
+           Less than equal to instead of less than
+    22: i = (words.length - 1)
+           Equals instead of less than
+    22: i != (words.length - 1)
+           Not equals instead of less than
+    22: i >= (words.length - 1)
+           Greater than equal to instead of less than
+    25: words[i] != words[i+1]
+           Not equals instead of equals
+ASR 34: lineNumber = lineNumber / 1
+           Divide lineNumber by 1 instead of adding 1
+UOD 34: lineNumber = lineNumber * 1
+           Multiply lineNumber by 1 instead of adding 1
+           
+Using all effective mutation operations there are about 39 possible mutations available.
+10: Interchange operations: != >=, >, <=, <
+15: Change conditional: !=
+22: Interchange operations: <=, > >=, = !=
+22: Interchange operations: -, *, / %
+25: Change conditional: !=
+25: Interchange operations: -, *, /, %
+30: Interchange operations: +, *, / %
+30: Interchange operations: <, <=, >=, <, !=
+32: Interchange operations: <, <=, >=, >, !=
+34: Interchange operations: -, *, / %
