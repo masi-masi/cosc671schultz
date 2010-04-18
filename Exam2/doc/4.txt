@@ -66,21 +66,21 @@ c)  Identify the blocks in the partition for each characteristic.  Select one bl
 
 d)  Define values for the block
       
-      cap char                 b1           b2
-      cap (< 0)                -2            -2
-      cap (> 0)                  2             2
+      cap char         b1       b2
+      cap (< 0)        -2       -2
+      cap (> 0)        2        2
 
-      o char                      b1           b2          b3
-      o (= null)                 null         null        null
-      o (!= null)                3             2             3
+      o char           b1           b2          b3
+      o (= null)       null         null        null
+      o (!= null)      3            2           3
   
-     capacity char          b1            b2          b3
-     capacity (= size)     0              0            0
-     capacity (!= size)
+     capacity char          b1      b2          b3
+     capacity (= size)      0       0           0
+     capacity (!= size)     3       3           3
 
-     size char                   b1            b2
-     size (==0)                  0              0
-     size (!= 0)                   1             1
+     size char         b1            b2
+     size (==0)        0             0
+     size (!= 0)       1             1
 
 
 e)  Define a test set that satisfies base choice coverage.
@@ -103,7 +103,7 @@ e)  Define a test set that satisfies base choice coverage.
 
 f)  Repeat these steps for the Stutter web application we did in Project 2.
 
-a)  Identify all of the variables that would be of interest to input space partitioning 
+fa)  Identify all of the variables that would be of interest to input space partitioning 
       (don't forget state variables)
 
      Variables:
@@ -112,7 +112,7 @@ a)  Identify all of the variables that would be of interest to input space parti
      - line
      - words
 
-b)  Identify characteristics for each variable from (a) that may suggest partitions
+fb)  Identify characteristics for each variable from (a) that may suggest partitions
      
      args Characteristics:
      - args.length > 1 (block1 = true, block2 = false)
@@ -122,9 +122,9 @@ b)  Identify characteristics for each variable from (a) that may suggest partiti
      - input == null (block1 = true)
      - input != null (block1 = false)
 
-      line Characteristics:
-      - line != null (block1 = true, block2 = false)
-      - line != null (block1 = false, block2 = true)
+     line Characteristics:
+     - line != null (block1 = true, block2 = false)
+     - line != null (block1 = false, block2 = true)
 
      words Characteristics:
      - words[0].equalsIgnoreCase(lastWord) (block1 = true, block2 = true)
@@ -132,7 +132,7 @@ b)  Identify characteristics for each variable from (a) that may suggest partiti
      - words[i].equalsIgnoreCase(words[i+1]) (block3 = true, block4 = true)
      - words[i] != words[i+1] (block3 = false, block4 = true) 
 
-c)  Identify the blocks in the partition for each characteristic.  Select one block in 
+fc)  Identify the blocks in the partition for each characteristic.  Select one block in 
      each partition as the "base" block
      
      ** denotes base
@@ -159,7 +159,7 @@ c)  Identify the blocks in the partition for each characteristic.  Select one bl
      - block3 = Sytem.out.println("Stuttered word on line " + lineNumber + ": " + words[i]);
      - block4 = null
 
-d)  Define values for the block
+fd)  Define values for the block
       
       args char                 b1                                                b2
       args (.length > 1)    testFile.txt testFile1.txt            testFile.txt testFile2.txt
@@ -174,12 +174,12 @@ d)  Define values for the block
      line (= null)             null                      null
 
      words char                       b1               b2             b3            b4
-     words (= lastWord)         like \n like  
-     words (!= lastWord)        like \n pork
-     words ([i]= [i+1])              i like like pork
-     words ([i]!=[i+1])              i like pork
+     words (= lastWord)         like \n like      like \n like    like \n like   like \n like 
+     words (!= lastWord)        like \n pork      like \n pork    like \n pork   like \n pork
+     words ([i]= [i+1])       i like like pork   i like like pork i like like pork i like like pork
+     words ([i]!=[i+1])         i like pork       i like pork     i like pork     i like pork
 
-e)  Define a test set that satisfies base choice coverage.
+fe)  Define a test set that satisfies base choice coverage.
       
       args test set:
       args > 1: args = testFile.txt testFile2.txt
@@ -189,14 +189,12 @@ e)  Define a test set that satisfies base choice coverage.
       input = null
       input != null: input = i like pork
 
-     line test set:
-     line != null: line = i like pork
-     line = null: line = null
+      line test set:
+      line != null: line = i like pork
+      line = null: line = null
 
-     words test set:
-     words[0] = lastWord:  i like pork \n pork
-     words[0] != lastWord:  i like pork \n and beans
-     words[i] = words[i+1]:   i like like pork
-     words[i] != words[i+1]:  i like pork
-
-     
+      words test set:
+      words[0] = lastWord:  i like pork \n pork
+      words[0] != lastWord:  i like pork \n and beans
+      words[i] = words[i+1]:   i like like pork
+      words[i] != words[i+1]:  i like pork
