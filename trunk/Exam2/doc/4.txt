@@ -147,15 +147,41 @@ fc)  Identify the blocks in the partition for each characteristic.  Select one b
                                System.err.println("Error reading from file " + arge[0] + ": " + e.getMessage());
 
      input blocks:
-     - block1** = EVERYTHING IN WHILE LOOP
+     - block1** = line = line.replaceAll ("[^a-zA-Z0-9 ]", "");
+                  String[] words = line.split (" ");
+                  if(words[0].equalsIgnoreCase(lastWord))
+                    System.out.println("Stuttered word on line " + lineNumber + ": " + words[0]);
+                  for(int i = 0; i < (words.length-1); i++) {
+                    if(words[i].equalsIgnoreCase(words[i+1]))
+                      System.out.println("Stutered word on line " + lineNumber + ": " + words[i]);
+                    lastWord = words[words.lenbth-1];
+                    line = input.readLine();
+                    lineNumber++;
+                  }
 
      line blocks:
-     - block1** = EVERYTHING IN WHILE LOOP
+     - block1** = line = line.replaceAll ("[^a-zA-Z0-9 ]", "");
+                  String[] words = line.split (" ");
+                  if(words[0].equalsIgnoreCase(lastWord))
+                    System.out.println("Stuttered word on line " + lineNumber + ": " + words[0]);
+                  for(int i = 0; i < (words.length-1); i++) {
+                    if(words[i].equalsIgnoreCase(words[i+1]))
+                      System.out.println("Stutered word on line " + lineNumber + ": " + words[i]);
+                    lastWord = words[words.lenbth-1];
+                    line = input.readLine();
+                    lineNumber++;
+                  }
      - block2 = null
 
      words blocks:
      - block1** = System.out.println("Stuttered word on line  + lineNumber + ": " + words[0]);
-     - block2 = EVERYTHING INCLUDING AND AFTER FOR LOOP
+     - block2 = for(int i = 0; i < (words.length-1); i++) {
+                    if(words[i].equalsIgnoreCase(words[i+1]))
+                      System.out.println("Stutered word on line " + lineNumber + ": " + words[i]);
+                    lastWord = words[words.lenbth-1];
+                    line = input.readLine();
+                    lineNumber++;
+                  }
      - block3 = Sytem.out.println("Stuttered word on line " + lineNumber + ": " + words[i]);
      - block4 = null
 
