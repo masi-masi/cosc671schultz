@@ -1,0 +1,55 @@
+Tara Schultz
+COSC 671.101
+
+Project 4
+
+Task 3
+    To correct the JUnit Test failures: java.lang.AssertionError: expected: <10.0> but was <25.0>
+                                        at RectangleTest.testGetArea(RectangleTest.java:17)
+                                   and: java.lang.AssertionError: expected: <5.3852> but was: <7.0710678118654755>
+                                        at RectangleTest.testGetDiagonal(RectangleTest.java:23)
+    I corrected a line in the Point class.  Originally point x was being initialized with the 
+    parameterized point y.  So line 5 of Point.java was modified as follows:
+        this.x = y;
+            becomes
+        this.x = x;
+        
+    Modifications to Rectangle.java for readability:
+        1.  Created new private variables width and height for Rectangle.
+            Values for these variables are initialized in the constructor.
+
+                private Point p1, p2;
+                private Double width, height;
+    
+                Rectangle(Point p1, Point p2) {
+                    this.p1 = p1;
+                    this.p2 = p2;
+        
+                    width = (this.p2.x - this.p1.x);
+                    height = (this.p2.y - this.p1.y);
+                }
+
+        2.  Simplify getArea() by creating a variable area to be returned by the method.
+            area is initialized using private class variables width and height.
+                
+                public Double getArea() {
+                    Double area = Math.abs(width * height);
+                    return area;
+                }   
+                
+        3.  Simplify getDiagonal() by creating a variable diagonal to be returned by the method.
+            Also added x and y variables for computing the squares of the width and height respectively.
+            x and y are initialized using private class variables width and height.
+            diagonal is initialized using the computed values of x and y.        
+        
+                public Double getDiagonal() {
+                    Double diagonal;
+            
+                    Double x = Math.pow(width, 2);
+                    Double y = Math.pow(height, 2);
+        
+                    diagonal = Math.sqrt(x + y);
+
+                    return diagonal;
+                }
+    
