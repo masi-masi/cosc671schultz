@@ -1,0 +1,17 @@
+Tara Schultz
+COSC 671.101
+
+Project 4
+
+Task 2
+    To correct the JUnit Test failure: java.lang.AssertionError: 0 expected: <0> but was <1>
+                                       at FibonacciTest.testFib(FibonacciTest.java:10)
+    I corrected the case 0 in the switch statement in Fibonacci.fib(Fibonacci.java:4).  The 
+    Fibonacci value F(n) where n = 0 is F(0) = 0.  The case statement states, where n = 0, 
+    return 1 which is incorrect.  So line 4 of Fibonacci.java was modified as follows:
+        case 0: return 1;  
+            becomes
+        case 0: return 0;
+
+Task 3
+    
