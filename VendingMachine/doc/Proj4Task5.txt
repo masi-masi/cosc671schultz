@@ -1,0 +1,133 @@
+Tara Schultz
+COSC 671.101
+
+Project 4
+
+Task 5
+
+1.  Summary of previous tasks
+    
+Task 2
+    To correct the JUnit Test failure: java.lang.AssertionError: 0 expected: <0> but was <1> 
+                                       at FibonacciTest.testFib(FibonacciTest.java:10)
+    
+    I corrected the case 0 in the switch statement in Fibonacci.fib(Fibonacci.java:4).  
+    The Fibonacci value F(n) where n = 0 is F(0) = 0.  The case statement states, 
+    where n = 0, return 1 which is incorrect.  So line 4 of Fibonacci.java was 
+    modified as follows:
+        case 0: return 1;  
+            becomes
+        case 0: return 0;
+                
+Task 3
+    To correct the JUnit Test failures: java.lang.AssertionError: expected: <10.0> but was <25.0>
+                                        at RectangleTest.testGetArea(RectangleTest.java:17)
+                                   and: java.lang.AssertionError: expected: <5.3852> but was: <7.0710678118654755>
+                                        at RectangleTest.testGetDiagonal(RectangleTest.java:23)
+    I corrected a line in the Point class.  Originally point x was being initialized with the 
+    parameterized point y.  So line 5 of Point.java was modified as follows:
+        this.x = y;
+            becomes
+        this.x = x;
+        
+    Modifications to Rectangle.java for readability:
+        1.  Created new private variables width and height for Rectangle.
+            Values for these variables are initialized in the constructor.
+
+                private Point p1, p2;
+                private Double width, height;
+    
+                Rectangle(Point p1, Point p2) {
+                    this.p1 = p1;
+                    this.p2 = p2;
+        
+                    width = (this.p2.x - this.p1.x);
+                    height = (this.p2.y - this.p1.y);
+                }
+
+        2.  Simplify getArea() by creating a variable area to be returned by the method.
+            area is initialized using private class variables width and height.
+                
+                public Double getArea() {
+                    Double area = Math.abs(width * height);
+                    return area;
+                }   
+                
+        3.  Simplify getDiagonal() by creating a variable diagonal to be returned by the method.
+            Also added x and y variables for computing the squares of the width and height respectively.
+            x and y are initialized using private class variables width and height.
+            diagonal is initialized using the computed values of x and y.        
+        
+                public Double getDiagonal() {
+                    Double diagonal;
+            
+                    Double x = Math.pow(width, 2);
+                    Double y = Math.pow(height, 2);
+        
+                    diagonal = Math.sqrt(x + y);
+
+                    return diagonal;
+                }
+
+Task 4
+    A few bugs I found were related to a negative balance.  While it is a 
+    precondition for most of the methods like getBalance and returnChange 
+    there was no code to direct what to do in the even that this value 
+    was less than zero.  
+    
+    All tests can be found in /src/default package/VendingMachineItemTest.java
+    and /src/default package/VendingMachineTest.java.
+    
+    GetBalance
+        /*
+         * Test: Get balance when balance is -3.25 (less than 0)
+         * EO: VendingMachineException thrown (balance should not be less than 0)
+         */
+        machine.balance = -3.25;
+        try {
+            double balance = machine.getBalance();
+        } catch (VendingMachineException vme) {
+            return;
+        }
+        fail("Expected VendingMachineException - Balance is less than 0");
+        
+    ReturnChange
+        /*
+         * Test: Return change when purchasing 1.25 item with balance of -2.00
+         * EO: throw VendingMachineException can't return balance change of -2.00
+         */
+        machine.balance = -2.00;
+        try {
+            machine.makePurchase(VendingMachine.A_CODE);
+        } catch (VendingMachineException vme) {
+            return;
+        }
+        fail("Expected VendingMachineException - Cannot return negative change");
+    
+2.  A description (2-3 paragraphs) of what you learned from this project 
+    (particularly Task 4).
+    
+    I learned a lot about writing test cases.  I normally don't have as much time
+    to write test cases as I would like.  It's obvious that these testing strategies
+    and tools like JUnit can save a lot of time and bugs in the long run.  Task 4 
+    was particularly interesting because we had to derive test cases not necessarily
+    from the code itself (while it was available) but from looking at the 
+    documentation.  It was a little lesson in the importance of up to date and
+    thorough documentation.  
+    
+    Testing is definitely worth the long term investment of time and resources. 
+    Guaranteeing that a product meets its requirements can be be fatal in 
+    insulin pumps therefore testing is a matter of life and death.  
+    
+3.  A description (2-3 paragraphs) of what you liked and didn't like about JUnit's
+    support for unit testing.    
+    
+    In general I really like JUnit.  I've used it on some small projects at work, 
+    but not ont he much larger ones that could most definitely benefit from tools
+    like this.  
+    
+    The only thing I disliked about JUnit was that I had to really think about 
+    every possible test case, and that got a little confusing when trying to
+    write them in terms of JUnit.  Other than that, it wasn't bad.  Just took some
+    thought.    
+        

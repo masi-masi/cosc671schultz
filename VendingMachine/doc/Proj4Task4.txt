@@ -1,0 +1,37 @@
+Tara Schultz
+COSC 671.101
+
+Project 4
+
+Task 4
+    A few bugs I found were related to a negative balance.  While it is a 
+    precondition for most of the methods like getBalance and returnChange 
+    there was no code to direct what to do in the even that this value 
+    was less than zero.  
+    
+    GetBalance
+        /*
+         * Test: Get balance when balance is -3.25 (less than 0)
+         * EO: VendingMachineException thrown (balance should not be less than 0)
+         */
+        machine.balance = -3.25;
+        try {
+            double balance = machine.getBalance();
+        } catch (VendingMachineException vme) {
+            return;
+        }
+        fail("Expected VendingMachineException - Balance is less than 0");
+        
+    ReturnChange
+        /*
+         * Test: Return change when purchasing 1.25 item with balance of -2.00
+         * EO: throw VendingMachineException can't return balance change of -2.00
+         */
+        machine.balance = -2.00;
+        try {
+            machine.makePurchase(VendingMachine.A_CODE);
+        } catch (VendingMachineException vme) {
+            return;
+        }
+        fail("Expected VendingMachineException - Cannot return negative change");
+    
